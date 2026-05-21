@@ -1,0 +1,36 @@
+{{define "content"}}
+<!-- Hero -->
+<div class="text-center mb-5">
+  <h1 class="display-4 fw-bold mb-2">
+    <span class="text-warning">Ink</span>well
+  </h1>
+  <p class="text-secondary lead">A clean, fast blog powered by Go & HTMX</p>
+</div>
+
+<!-- Search bar with HTMX live search -->
+<div class="row justify-content-center mb-5">
+  <div class="col-md-7">
+    <div class="input-group input-group-lg">
+      <span class="input-group-text bg-dark border-secondary">
+        <i class="bi bi-search text-secondary"></i>
+      </span>
+      <input
+        type="text"
+        name="q"
+        class="form-control bg-dark border-secondary text-light"
+        placeholder="Search posts..."
+        hx-get="/search"
+        hx-trigger="keyup changed delay:300ms"
+        hx-target="#post-list"
+        hx-swap="innerHTML"
+        autocomplete="off"
+      >
+    </div>
+  </div>
+</div>
+
+<!-- Post list (HTMX target) -->
+<div id="post-list">
+  {{template "post_list" .}}
+</div>
+{{end}}
